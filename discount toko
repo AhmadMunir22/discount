@@ -1,14 +1,23 @@
-def x(p, q):
-    t = p * q
-    if q > 5:
-        t = t * 0.9
-    
-    if q > 10:
-        t = t * 0.8
-        
-    print("Total: " + str(t))
-    return t
+DISCOUNT_THRESHOLD_HIGH = 10
+DISCOUNT_THRESHOLD_LOW = 5
+DISCOUNT_RATE_HIGH = 0.8
+DISCOUNT_RATE_LOW = 0.9
 
-a = 10000
-b = 12
-x(a, b)
+def calculate_discounted_price(price, quantity):
+    total = price * quantity
+    
+    if quantity > DISCOUNT_THRESHOLD_HIGH:
+        return total * DISCOUNT_RATE_HIGH
+    if quantity > DISCOUNT_THRESHOLD_LOW:
+        return total * DISCOUNT_RATE_LOW
+        
+    return total
+
+def main():
+    price_per_item = 10000
+    quantity = 12
+    final_price = calculate_discounted_price(price_per_item, quantity)
+    print(f"Total: {final_price}")
+
+if __name__ == "__main__":
+    main()
